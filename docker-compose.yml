@@ -5,6 +5,15 @@ services:
     network_mode: "host"
     volumes:
       - .:/usr/src/app
+      - auth_cache:/home/appuser/.config # Location based on cli-kit using 'config' npm package
+      - bundle_cache:/usr/local/bundle  # This SHOULD cache installed gems across container runs
     environment:
       SHOPIFY_FLAG_STORE: ${SHOPIFY_FLAG_STORE}
-    user: "1000:1000" # Match the host user ID and group ID
+      BUNDLE_PATH: /usr/local/bundle # Not sure if this is needed TODO
+    user: "1000:1000"
+
+volumes:
+  auth_cache: # Caches auth between runs
+  bundle_cache:  # Should be caching gems across container runs but still very slow on each run TODO
+ 
+

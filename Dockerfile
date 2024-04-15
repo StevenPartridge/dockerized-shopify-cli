@@ -22,6 +22,12 @@ ENV NPM_CONFIG_PREFIX=/home/appuser/.npm-global
 RUN npm install -g @shopify/cli @shopify/theme && \
     chown -R appuser:appuser /home/appuser
 
+# Create directory within the container
+RUN mkdir -p /home/appuser/.config
+
+# Set permissions and ownership
+RUN chown -R appuser:appuser /home/appuser/.config
+
 # Install Ruby gems with Bundler
 RUN gem install bundler
 
