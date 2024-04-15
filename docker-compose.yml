@@ -1,0 +1,10 @@
+services:
+  shopify-cli:
+    build:
+      context: .
+    network_mode: "host"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      SHOPIFY_FLAG_STORE: ${SHOPIFY_FLAG_STORE}
+    user: "1000:1000" # Match the host user ID and group ID
